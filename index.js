@@ -42,8 +42,9 @@ Example: fever, chest pain, bleeding`;
       const result = await askGemini(text);
       response = `END ${result}`;
     } catch (err) {
-      response = `END Sorry, service unavailable. If emergency, go to hospital immediately.`;
-    }
+    console.error('Gemini error:', err.message);
+    response = `END Sorry, service unavailable. If emergency, go to hospital immediately.`;
+  }
   }
 
   res.set('Content-Type', 'text/plain');
