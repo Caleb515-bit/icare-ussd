@@ -25,6 +25,10 @@ ADVICE: [one sentence of safe advice]`
     }
   );
   const data = await response.json();
+  console.log('Gemini response:', JSON.stringify(data));
+  if (!data.candidates || data.candidates.length === 0) {
+    throw new Error('No candidates: ' + JSON.stringify(data));
+  }
   return data.candidates[0].content.parts[0].text;
 }
 
